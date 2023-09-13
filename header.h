@@ -10,7 +10,8 @@
 #include <string.h>
 
 #define BUFFER_SIZE 1024
-#define environ
+
+extern char** environ;
 
 int main(int argc, char *argv[], char **env);
 char **tokenize(char *buffer, const char *delim);
@@ -27,18 +28,19 @@ int _putchar(char c);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 void _puts(char *str);
-int _strlen(char *s);
+int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
 int _atoi(char *s);
 char *_strndup(char *s);
 
 /*..... Environments handlers....*/
-/*int prog_setenv(char args, char __attribute__((__unsed__)) **ard);*/
+int prog_setenv(char args, char __attribute__((__unused__)) **ard);
 int prog_unsetenv(char **args, char __attribute__((__unused__)) **ard);
 void _printenv(void);
 void print_env_variable(const char *str);
 
-
+/*........MISCELLINEOUS...*/
+unsigned int find_delim(char n, const char *str);
 void _error(const char *args, int error_msg);
 
 #endif
