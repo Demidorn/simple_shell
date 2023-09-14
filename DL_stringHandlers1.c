@@ -5,7 +5,7 @@
  * @result: array to hold string
  * @value: integer value to be converted
  *
- * Return: string
+ * Return: converted string
  */
 
 void int_to_string(int value, char *result)
@@ -106,11 +106,11 @@ int _strcmp(char *s1, char *s2)
  * Return: Result of two strings together
  */
 
-char *_strcat(char *dest, char *src)
+char *_strcat(char *dest, const char *src)
 {
 	int i = 0, j;
 
-	while (dest[i])
+	while (dest[i] != '\0')
 	{
 		i++;
 	}
