@@ -1,4 +1,4 @@
-#include "heade.h"
+#include "header.h"
 
 /**
  * prog_setenv - Modifies an environment variable to the path
@@ -8,7 +8,7 @@
  * Return: 1 if error occurs otherwise 0
  */
 
-int prog_setenv(char args, char __attribute__((__unsed__)) **ard)
+int prog_setenv(char **args, char __attribute__((__unused__)) **ard)
 {
 	char **old_value = NULL, *new_value, **new_env;
 	size_t size = 0;
@@ -16,18 +16,18 @@ int prog_setenv(char args, char __attribute__((__unsed__)) **ard)
 
 	if (!args[0] || !args[1])
 		_error(args[0], -1);
-	new_value = malloc((strlen(args[0]) + 1) + (strlen(args[1]) + 1));
+	new_value = malloc((_strlen(args[0]) + 1) + (_strlen(args[1]) + 1));
 	if (!new_value)
 		_error(args[0], -1);
-	strcpy(new_value, args[0]);
-	strcat(new_value, "=");
-	strcat(new_value, args[1]);
-	old_value = getenv(args[0]);
+	_strcpy(new_value, args[0]);
+	_strcat(new_value, "=");
+	_strcat(new_value, args[1]);
+	old_value = _getenv(args[0]);
 	if (old_value)
 	{
 		free(*old_value);
 		*old_value = new_value;
-		retunr (0);
+		return (0);
 	}
 
 	while (environ[size])
@@ -64,7 +64,7 @@ int prog_unsetenv(char **args, char __attribute__((__unused__)) **ard)
 	i = j = 0;
 	if (!args[0])
 		_error(args[0], -1);
-	env_var = getenv(args[0]);
+	env_var = _getenv(args[0]);
 	if (!env_var)
 		return (0);
 
@@ -100,7 +100,7 @@ int prog_unsetenv(char **args, char __attribute__((__unused__)) **ard)
 void _printenv(void)
 {
 	char **env = environ;
-
+	
 	while (*env != NULL)
 	{
 		print_env_variable(*env);
@@ -117,7 +117,7 @@ void _printenv(void)
 
 void print_env_variable(const char *str)
 {
-	size_t len = strlen(str);
+	size_t len = _strlen(str);
 
 	write(STDOUT_FILENO, str, len);
 	write(STDOUT_FILENO, "\n", 1);
