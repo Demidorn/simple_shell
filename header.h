@@ -26,7 +26,7 @@ int _execute(char *args, char **envp);
 void int_to_string(int value, char *result);
 int _putchar(char c);
 int _strcmp(char *s1, char *s2);
-char *_strcat(char *dest, char *src);
+char *_strcat(char *dest, const char *src);
 void _puts(char *str);
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
