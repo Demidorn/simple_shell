@@ -26,6 +26,7 @@ int _execute(char *args, char **envp);
 void int_to_string(int value, char *result);
 int _putchar(char c);
 int _strcmp(char *s1, char *s2);
+int _strncmp(const char *s1, const char *s2, size_t k);
 char *_strcat(char *dest, const char *src);
 void _puts(char *str);
 int _strlen(const char *s);
@@ -34,6 +35,7 @@ int _atoi(char *s);
 char *_strndup(char *s);
 
 /*..... Environments handlers....*/
+char **_getenv(const char *str);
 int prog_setenv(char **args, char __attribute__((__unused__)) **ard);
 int prog_unsetenv(char **args, char __attribute__((__unused__)) **ard);
 void _printenv(void);
