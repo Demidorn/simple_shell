@@ -34,7 +34,7 @@ int _atoi(char *s);
 char *_strndup(char *s);
 
 /*..... Environments handlers....*/
-int prog_setenv(char args, char __attribute__((__unused__)) **ard);
+int prog_setenv(char **args, char __attribute__((__unused__)) **ard);
 int prog_unsetenv(char **args, char __attribute__((__unused__)) **ard);
 void _printenv(void);
 void print_env_variable(const char *str);
