@@ -1,41 +1,50 @@
 #include "header.h"
 
 /**
- * _execute - code that executes the execve commands
- * @args: pointer to string array
- * @envp: array to pointer of environment variable
+ * execute_command - function to handle command execution based on user input
+ * @get_address: input line from user
+ * @env: environment variable
  *
- * Return: 0 successful
+ * Return: output executed command else -1
  */
 
-int _execute(char *args, char **envp)
+int execute_command(char *get_address, char __attribute__((__unused__)) **env)
 {
-	char **argv;
-	/*int kai;*/
-	struct stat buff;
+	char *delim = " \n\t\r";
+	char **tokens = NULL, *command_path = NULL;
+	int status = 0, ex = 0;
 
-	argv = malloc(sizeof(char *));
-	if (argv == NULL)
+	tokens = tokenize(get_address, delim);
+	if (!tokens || tokens[0] == NULL)
 	{
-		perror("Error: ");
-		exit(EXIT_FAILURE);
+		perror("Error ");
+		return (ex);
 	}
-	argv[0] = strtok(args, " \t\n");
-	if (argv[0] == NULL)
+	if (_strcmp(tokens[0], "exit") == 0)
 	{
-		free(argv);
-		return (0);
+		if (tokens[1] != NULL)
+		{
+			status = atoi(tokens[1]);
+		}
+		free(tokens);
+		free(command_path);
+		exit(status);
 	}
-	/*check if file exists*/
-	if (stat(argv[0], &buff) == -1)
+	if (_strcmp(tokens[0], "env") == 0)
 	{
-		perror("Error: ");
-		free(argv);
-		exit(EXIT_FAILURE);
+		_printenv();
+		free(tokens);
+		free(command_path);
+		return (ex);
 	}
-	execve(argv[0], argv, envp);
-	/*print error if execve failed*/
-	perror("Error execve:");
-	free(argv);
-	exit(EXIT_FAILURE);
+	command_path = locate_path(tokens[0]);
+	if (!command_path)
+	{
+		perror("command not found");
+		free(tokens);
+		ex = 127;
+		return (ex);
+	}
+	execute_and_wait(command_path, tokens, &ex);
+	return (ex);
 }
