@@ -42,6 +42,5 @@ char **tokenize(char *buffer, const char *delim)
 		token = strtok(NULL, delim);
 	}
 	m_token[token_count] = NULL;
-	free(token);
 	return (m_token);
 }
