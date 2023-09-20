@@ -38,65 +38,23 @@ void int_to_string(int value, char *result)
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
  * _strcmp - compares two strings
  * @s1: First string
  * @s2: Second string
- * Return: Int  value
+ * Return: The value
  */
 
 int _strcmp(char *s1, char *s2)
 {
-	int a = 0, b = 0, c = 0, r = 0, lim;
+	int i = 0;
 
-	while (s1[a])
+	while (s1[i] != '\0')
 	{
-		a++;
-	}
-
-	while (s2[b])
-	{
-		b++;
-	}
-
-	if (a <= b)
-	{
-		lim = a;
-	}
-	else
-	{
-		lim = b;
-	}
-
-	while (c <= lim)
-	{
-		if (s1[c] == s2[c])
-		{
-			c++;
-			continue;
-		}
-		else
-		{
-			r = s1[c] - s2[c];
+		if (s1[i] != s2[i])
 			break;
-		}
-
-		c++;
+		i++;
 	}
-
-	return (r);
+	return (s1[i] - s2[i]);
 }
 
 /**
@@ -124,16 +82,25 @@ char *_strcat(char *dest, const char *src)
 }
 
 /**
- * _puts - declares a string to standard output
- * @str: To be checked
- * Return: Nothing
+ * _strncmp - compares amount of characters of two strings
+ * @s1: first string
+ * @s2: second string
+ * @s: amount of characters to compare
+ * Return: 0 (successful) otherwise 1
  */
-
-void _puts(char *str)
+int _strncmp(const char *s1, const char *s2, size_t s)
 {
-	for (; *str != '\0'; str++)
+	size_t j;
+
+	if (s1 == NULL)
+		return (-1);
+
+	for (j = 0; j < s && s2[j]; j++)
 	{
-	_putchar(*str);
+		if (s1[j] != s2[j])
+		{
+			return (1);
+		}
 	}
-	_putchar('\n');
+	return (0);
 }
