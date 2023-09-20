@@ -14,9 +14,10 @@ char **tokenize(char *buffer, const char *delim)
 {
 	int i, token_count = 0;
 	char *token;
-	char **m_token = malloc(MAX_TOKEN * sizeof(char *));
+	char **m_token = malloc((MAX_TOKEN + 1) * sizeof(char *));
 
-	if (m_token == NULL)
+	/*if (m_token == NULL)*/
+	if (!m_token)
 	{
 		perror("Error: ");
 		return (NULL);
@@ -25,8 +26,9 @@ char **tokenize(char *buffer, const char *delim)
 
 	while (token != NULL && token_count < MAX_TOKEN)
 	{
-		m_token[token_count] = strdup(toke);
-		if(m_token[token_count] == NULL)
+		m_token[token_count] = _strdup(token);
+		/*if (m_token[token_count] == NULL)*/
+		if (!m_token[token_count])
 		{
 			perror("Memory allocation failed");
 			for (i = 0; i < token_count; i++)
@@ -37,12 +39,9 @@ char **tokenize(char *buffer, const char *delim)
 			return (NULL);
 		}
 		token_count++;
-		if (token_count >= MAX_TOKEN)
-		{
-			break;
-		}
 		token = strtok(NULL, delim);
 	}
 	m_token[token_count] = NULL;
+	free(token);
 	return (m_token);
 }
