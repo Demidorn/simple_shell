@@ -1,26 +1,28 @@
 #include "header.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: The string to get parameter of
- * Return: The length of the @s
+ * _strlen - counts the length of a string
+ * @s: string to be counted
+ * Return: length of the string
  */
 
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int length = 0;
 
-	while (*s++)
-	length++;
-	return (length);
+	if (s == NULL)
+		return (length);
 
+	for (; s[length] != '\0'; length++)
+		continue;
+	return (length);
 }
 
 /**
  * _strcpy - copies the string pointed to
  * @src: Source value
  * @dest: Destination of value
- * Return: The pointer to dest
+ * Return: Destination of string
  */
 
 char *_strcpy(char *dest, char *src)
@@ -37,61 +39,50 @@ char *_strcpy(char *dest, char *src)
 
 /**
  * _atoi - converts string into a integer
- * @s: The pointer to convert
- * Return: An integer value(s)
+ * @s: string to be changed
+ * Return: An integer value(s) of converted string(s)
  */
 
 int _atoi(char *s)
 {
-	int c = 0;
-	unsigned int ni = 0;
-	int min = 1;
-	int isi = 0;
+	unsigned int n = 0;
 
-	while (s[c])
-	{
-	if (s[c] == 45)
-	{
-	min *= -1;
-	}
-	while (s[c] >= 48 && s[c] <= 57)
-	{
-	isi = 1;
-	ni = (ni * 10) + (s[c] - '0');
-	c++;
-	}
-	if (isi == 1)
-	{
-	break;
-	}
-	c++;
-	}
-	ni *= min;
-	return (ni);
+	do {
+		if (*s == '-')
+			return (2);
+		else if ((*s < '0' || *s > '9') && *s != '\0')
+			return (-1);
+		else if (*s >= '0' && *s <= '9')
+			n = (n * 10) + (*s - '0');
+		else if (n > 0)
+			break;
+	} while (*s++);
+	return (n);
 }
 
 /**
- * _strndup - duplicates a string
+ * _strdup - duplicates a string
  * @s: string chars
  *
  * Return: duplicated string otherwise null
  */
 
-char *_strndup(char *s)
+char *_strdup(char *s)
 {
-        char *j;
-        size_t k, m = 0;
-	k = _strlen(s);
-        j = malloc(sizeof(char) * (k + 1));
+	char *j;
+	size_t k, m = 0;
 
-        if (!j)
-        {
-                return (NULL);
-        }
-        while (m <= k)
-        {
-                j[m] = s[m];
-                m++;
-        }
-        return (j);
+	k = _strlen(s);
+	j = malloc(sizeof(char) * (k + 1));
+	if (!j)
+	{
+		return (NULL);
+	}
+
+	while (m <= k)
+	{
+		j[m] = s[m];
+		m++;
+	}
+	return (j);
 }
