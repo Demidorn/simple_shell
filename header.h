@@ -11,38 +11,35 @@
 
 #define BUFFER_SIZE 1024
 
-extern char** environ;
+extern char **environ;
 
-int main(int argc, char *argv[], char **env);
-char **tokenize(char *buffer, const char *delim);
+/*....... Path finders.......*/
+int main(int argc, char __attribute__((__unused__)) *argv[], char **env);
 char *locate_path(char *com_val);
-char *_getline();
+int execute_command(char *get_address, char __attribute__((__unused__)) **env);
 
+/*........Tokenizers......*/
+char **tokenize(char *buffer, const char *delim);
+char *_strtok(char *str, const char *fem);
+unsigned int find_delim(char n, const char *str);
 
-int _execute(char *args, char **envp);
+/*........ Environ variables.......*/
 
+char *_getenv(const char *str);
+ssize_t read_input(char **get_address, size_t *length_input);
+void _printenv(void);
 
-/*....... String Handlers.....*/
+/*.......... String Handlers.........*/
 void int_to_string(int value, char *result);
-int _putchar(char c);
 int _strcmp(char *s1, char *s2);
-int _strncmp(const char *s1, const char *s2, size_t k);
 char *_strcat(char *dest, const char *src);
-void _puts(char *str);
+int _strncmp(const char *s1, const char *s2, size_t s);
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
 int _atoi(char *s);
-char *_strndup(char *s);
+char *_strdup(char *s);
 
-/*..... Environments handlers....*/
-char **_getenv(const char *str);
-int prog_setenv(char **args, char __attribute__((__unused__)) **ard);
-int prog_unsetenv(char **args, char __attribute__((__unused__)) **ard);
-void _printenv(void);
-void print_env_variable(const char *str);
-
-/*........MISCELLINEOUS...*/
-unsigned int find_delim(char n, const char *str);
-void _error(const char *args, int error_msg);
+/*....... Miscillenous....*/
+int execute_and_wait(char *command_path, char **tokens, int *e_status);
 
 #endif
