@@ -33,7 +33,7 @@ int main(int argc, char __attribute__((__unused__)) *argv[], char **env)
 			if (string_line != 0)
 				return (string_line);
 		}
-		/*free(get_address);*/
 	}
+	free(get_address);
 	return (0);
 }

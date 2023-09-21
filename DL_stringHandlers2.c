@@ -70,8 +70,9 @@ int _atoi(char *s)
 char *_strdup(char *s)
 {
 	char *j;
-	size_t k, m = 0;
-
+	size_t k, m = 0;	
+	if (s == NULL)
+		return (NULL);
 	k = _strlen(s);
 	j = malloc(sizeof(char) * (k + 1));
 	if (!j)
@@ -79,10 +80,11 @@ char *_strdup(char *s)
 		return (NULL);
 	}
 
-	while (m <= k)
+	while (m < k)
 	{
 		j[m] = s[m];
 		m++;
 	}
+	j[m] = '\0';
 	return (j);
 }

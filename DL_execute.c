@@ -4,10 +4,8 @@
  * execute_command - function to handle command execution based on user input
  * @get_address: input line from user
  * @env: environment variable
- *
  * Return: output executed command else -1
  */
-
 int execute_command(char *get_address, char __attribute__((__unused__)) **env)
 {
 	char *delim = " \n\t\r";
@@ -18,24 +16,21 @@ int execute_command(char *get_address, char __attribute__((__unused__)) **env)
 	if (!tokens || tokens[0] == NULL)
 	{
 		perror("Error ");
-		if (tokens)
-			free(tokens);
+		free(tokens);
 		return (ex);
 	}
 	if (_strcmp(tokens[0], "exit") == 0)
 	{
 		if (tokens[1] != NULL)
-		{
 			status = atoi(tokens[1]);
-		}
-		free(tokens);
+		_free_memo(tokens);
 		free(command_path);
 		exit(status);
 	}
 	if (_strcmp(tokens[0], "env") == 0)
 	{
 		_printenv();
-		free(tokens);
+		_free_memo(tokens);
 		free(command_path);
 		return (ex);
 	}
@@ -43,12 +38,13 @@ int execute_command(char *get_address, char __attribute__((__unused__)) **env)
 	if (!command_path)
 	{
 		perror("command not found");
-		free(tokens);
+		/*free(tokens);*/
+		free(command_path);
 		ex = 127;
 		return (ex);
 	}
 	execute_and_wait(command_path, tokens, &ex);
-	free(tokens);
+	_free_memo(tokens);
 	free(command_path);
 	return (ex);
 }
