@@ -1,8 +1,10 @@
 #include "header.h"
 
 /**
- * _free_memo - 
+ * _free_memo - frees allocated memory 
+ * @args: pointer array of characters
  *
+ * Return: Nothing
  */
 void _free_memo(char *args[])
 {
