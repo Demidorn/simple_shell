@@ -42,6 +42,6 @@ char *_strdup(char *s);
 /*....... Miscillenous....*/
 int execute_and_wait(char *command_path, char **tokens, int *e_status);
 void _free_memo(char *args[]);
-
+/*ssize_t _getline(char **lineptr, size_t *n, FILE *stream);*/
 
 #endif

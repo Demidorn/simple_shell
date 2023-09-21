@@ -70,7 +70,8 @@ int _atoi(char *s)
 char *_strdup(char *s)
 {
 	char *j;
-	size_t k, m = 0;	
+	size_t k, m = 0;
+
 	if (s == NULL)
 		return (NULL);
 	k = _strlen(s);
