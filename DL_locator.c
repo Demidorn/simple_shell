@@ -6,7 +6,6 @@
  *
  * Return: 0 when successful otherwise -1
  */
-
 char *locate_path(char *com_val)
 {
 	char *read_path, *copy_of_path, *file = NULL;
