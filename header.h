@@ -14,9 +14,9 @@
 extern char **environ;
 
 /*....... Path finders.......*/
-int main(int argc, char __attribute__((__unused__)) *argv[], char **env);
+int main(int argc, char __attribute__((__unused__)) *argv[]);
 char *locate_path(char *com_val);
-int execute_command(char *get_address, char __attribute__((__unused__)) **env);
+int execute_command(char *get_address);
 
 /*........Tokenizers......*/
 char **tokenize(char *buffer, const char *delim);

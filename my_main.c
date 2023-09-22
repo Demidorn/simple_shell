@@ -10,7 +10,7 @@
  * Return: 0 when successfull.
  */
 
-int main(int argc, char __attribute__((__unused__)) *argv[], char **env)
+int main(int argc, char __attribute__((__unused__)) *argv[])
 {
 	char *get_address = NULL;
 	size_t length_input = 0;
@@ -29,7 +29,7 @@ int main(int argc, char __attribute__((__unused__)) *argv[], char **env)
 		}
 		if (get_address[0] != '\0')
 		{
-			string_line = execute_command(get_address, env);
+			string_line = execute_command(get_address);
 			if (string_line != 0)
 				return (string_line);
 		}
