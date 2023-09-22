@@ -24,7 +24,7 @@ int main(int argc, char __attribute__((__unused__)) *argv[])
 		if (read_line == -1)
 		{
 			free(get_address);
-			exit(127);
+			exit(0);
 		}
 		if (get_address[0] != '\0')
 		{
