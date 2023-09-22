@@ -2,3 +2,7 @@ DL_getline.c
 DL_strtok.c
 .DL_getline.c.swp
 /test
+test
+./sample/DL_locator.c
+sample/hsh
+sample

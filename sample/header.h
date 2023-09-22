@@ -14,14 +14,14 @@
 extern char **environ;
 
 /*....... Path finders.......*/
-int main(int argc, char __attribute__((__unused__)) *argv[]);
+int main(int argc, char __attribute__((__unused__)) *argv[], char **env);
 char *locate_path(char *com_val);
-int execute_command(char *get_address);
+int execute_command(char *get_address, char __attribute__((__unused__)) **env);
 
 /*........Tokenizers......*/
 char **tokenize(char *buffer, const char *delim);
-/*char *_strtok(char *str, const char *fem);*/
-/*unsigned int find_delim(char n, const char *str);*/
+char *_strtok(char *str, const char *fem);
+unsigned int find_delim(char n, const char *str);
 
 /*........ Environ variables.......*/
 
@@ -41,7 +41,5 @@ char *_strdup(char *s);
 
 /*....... Miscillenous....*/
 int execute_and_wait(char *command_path, char **tokens, int *e_status);
-void _free_memo(char *args[]);
-/*ssize_t _getline(char **lineptr, size_t *n, FILE *stream);*/
 
 #endif

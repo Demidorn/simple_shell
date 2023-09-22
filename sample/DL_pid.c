@@ -33,8 +33,6 @@ int execute_and_wait(char *command_path, char **tokens, int *e_status)
 			*e_status = WEXITSTATUS(status);
 		else
 			*e_status = -1;
-		free(command_path);
-		free(tokens);
 	}
 	return (0);
 }
