@@ -28,7 +28,7 @@ char *_getenv(const char *str)
 			value = _strdup(environ[l] + len + 1);
 			if (value == NULL)
 			{
-				free(value);
+				/*free(value);*/
 				perror("Error: ");
 				return (NULL);
 			}

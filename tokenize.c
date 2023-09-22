@@ -27,8 +27,8 @@ char **tokenize(char *buffer, const char *delim)
 	while (token != NULL && token_count < MAX_TOKEN)
 	{
 		m_token[token_count] = _strdup(token);
-		/*if (m_token[token_count] == NULL)*/
-		if (!m_token[token_count])
+		if (m_token[token_count] == NULL)
+		/*if (!m_token[token_count])*/
 		{
 			perror("Memory allocation failed");
 			for (i = 0; i < token_count; i++)
@@ -36,6 +36,7 @@ char **tokenize(char *buffer, const char *delim)
 				free(m_token[i]);
 			}
 			free(m_token);
+			m_token = NULL;
 			return (NULL);
 		}
 		token_count++;

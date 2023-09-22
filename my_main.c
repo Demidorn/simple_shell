@@ -5,7 +5,6 @@
  * whenever the function is called upon.
  * @argc: Number of commandline arguments.
  * @argv: Pointer array of strings containing commandline arguments.
- * @env: An array of strings containing environment variables.
  *
  * Return: 0 when successfull.
  */
@@ -31,7 +30,10 @@ int main(int argc, char __attribute__((__unused__)) *argv[])
 		{
 			string_line = execute_command(get_address);
 			if (string_line != 0)
+			{
+				free(get_address);
 				return (string_line);
+			}
 		}
 	}
 	free(get_address);

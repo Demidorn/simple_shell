@@ -8,7 +8,6 @@
  *
  * Return: 0 when succeful else 1
  */
-
 int execute_and_wait(char *command_path, char **tokens, int *e_status)
 {
 	pid_t pid;

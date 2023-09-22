@@ -3,7 +3,7 @@
 /**
  * execute_command - function to handle command execution based on user input
  * @get_address: input line from user
- * @env: environment variable
+ *
  * Return: output executed command else -1
  */
 int execute_command(char *get_address)
@@ -17,14 +17,14 @@ int execute_command(char *get_address)
 	{
 		perror("Error ");
 		_free_memo(tokens);
-		return (ex);
+		return (-1);
 	}
 	if (_strcmp(tokens[0], "exit") == 0)
 	{
 		if (tokens[1] != NULL)
 			status = _atoi(tokens[1]);
 		_free_memo(tokens);
-		free(command_path);
+		free(get_address);
 		exit(status);
 	}
 	if (_strcmp(tokens[0], "env") == 0)
@@ -39,7 +39,6 @@ int execute_command(char *get_address)
 	{
 		perror("command not found");
 		_free_memo(tokens);
-		free(command_path);
 		ex = 127;
 		return (ex);
 	}
